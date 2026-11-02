@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace "com.example.myapp"
+    compileSdkVersion 35
+
+    defaultConfig {
+        applicationId 'com.example.myapp'
+        minSdkVersion 21
+        targetSdkVersion 35
+        versionCode 1
+        versionName '1.0'
+
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_shared'
+                abiFilters 'arm64-v8a'
+            }
+        }
+    }
+
+    // Direct Gradle to fetch assets straight from the root project folder
+    sourceSets {
+        main {
+            assets.srcDirs = ['../../assets']
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path '../../CMakeLists.txt'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        prefab false
+    }
+}
+
+task copyWebpLibs(type: Copy) {
+    // Clear the target folder before copying to prevent leftover files
+    doFirst {
+        delete file("src/main/jniLibs/arm64-v8a")
+    }
+
+    // Source directory of the built libraries
+    from "C:/libs/webp-1.6.0-android/arm64-v8a/lib"
+    include "libwebp.so", "libwebpdemux.so", "libwebpmux.so", "libsharpyuv.so"
+
+    // Target directory
+    into "src/main/jniLibs/arm64-v8a"
+
+    // Always re-run this task by ignoring the Gradle cache
+    outputs.upToDateWhen { false }
+}
+// Run this copying task before the build starts
+preBuild.dependsOn copyWebpLibs
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+}
