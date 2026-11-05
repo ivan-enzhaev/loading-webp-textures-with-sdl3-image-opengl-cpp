@@ -18,7 +18,7 @@ if(ANDROID)
     # -------------------------------------------------------------------------
     # Paths
     # -------------------------------------------------------------------------
-    set(SDL3_DIR       "C:/libs/sdl3-3.4.18-android")
+    set(SDL3_DIR       "C:/libs/sdl3-3.4.20-android")
     set(SDL3_IMAGE_DIR "C:/libs/sdl3_image-3.4.8-webp-android")
 
     # -------------------------------------------------------------------------
@@ -56,7 +56,7 @@ elseif(EMSCRIPTEN)
     # -------------------------------------------------------------------------
     # Paths
     # -------------------------------------------------------------------------
-    set(SDL3_DIR       "C:/libs/sdl3-3.4.18-wasm")
+    set(SDL3_DIR       "C:/libs/sdl3-3.4.20-wasm")
     set(SDL3_image_DIR "C:/libs/sdl3_image-3.4.8-webp-wasm")
     set(WEBP_DIR       "C:/libs/webp-1.6.0-wasm")
 
@@ -114,14 +114,14 @@ else()
     # -------------------------------------------------------------------------
     if(WIN32)
         set(GLAD_DIR         "C:/libs/glad-0.1.36/opengl-3.3")
-        set(SDL3_DIR         "C:/libs/sdl3-3.4.18-mingw/lib/cmake/SDL3")
+        set(SDL3_DIR         "C:/libs/sdl3-3.4.20-mingw/lib/cmake/SDL3")
         set(SDL3_image_DIR   "C:/libs/sdl3_image-3.4.8-webp-mingw/lib/cmake/SDL3_image")
         set(webp_ROOT        "C:/libs/webp-1.6.0-mingw")
         set(webp_INCLUDE_DIR "C:/libs/webp-1.6.0-mingw/include")
         set(webp_LIBRARY     "C:/libs/webp-1.6.0-mingw/lib/libwebp.a")
     else()
         set(GLAD_DIR         "$ENV{HOME}/libs/glad-0.1.36/opengl-3.3")
-        set(SDL3_DIR         "$ENV{HOME}/libs/sdl3-3.4.18-ubuntu/lib/cmake/SDL3")
+        set(SDL3_DIR         "$ENV{HOME}/libs/sdl3-3.4.20-ubuntu/lib/cmake/SDL3")
         set(SDL3_image_DIR   "$ENV{HOME}/libs/sdl3_image-3.4.8-webp-ubuntu/lib/cmake/SDL3_image")
         set(webp_ROOT        "$ENV{HOME}/libs/webp-1.6.0-ubuntu")
         set(webp_INCLUDE_DIR "$ENV{HOME}/libs/webp-1.6.0-ubuntu/include")
