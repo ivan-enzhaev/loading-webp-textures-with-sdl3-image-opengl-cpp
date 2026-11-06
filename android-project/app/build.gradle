@@ -51,25 +51,6 @@ android {
     }
 }
 
-task copyWebpLibs(type: Copy) {
-    // Clear the target folder before copying to prevent leftover files
-    doFirst {
-        delete file("src/main/jniLibs/arm64-v8a")
-    }
-
-    // Source directory of the built libraries
-    from "C:/libs/webp-1.6.0-android/arm64-v8a/lib"
-    include "libwebp.so", "libwebpdemux.so", "libwebpmux.so", "libsharpyuv.so"
-
-    // Target directory
-    into "src/main/jniLibs/arm64-v8a"
-
-    // Always re-run this task by ignoring the Gradle cache
-    outputs.upToDateWhen { false }
-}
-// Run this copying task before the build starts
-preBuild.dependsOn copyWebpLibs
-
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
 }
